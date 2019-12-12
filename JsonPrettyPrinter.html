@@ -1,0 +1,51 @@
+<html>
+<body>
+
+<div id="divUI">
+
+	<h1>Json Pretty Printer</h1>
+
+	<label>JSON to Format:</label><br />
+	<textarea id="textareaBefore" cols="40" rows="20">
+{ "one" : "one", "two" : { "three" : 3, "four" : false }, "five" : [ { "six" : "six" }, { "seven" : 7 } ] } 
+	</textarea><br />
+	
+	<button onclick="buttonFormat_Clicked();">Format</button><br />
+	
+	<label>Formatted JSON:</label><br />	
+	<textarea id="textareaAfter" cols="40" rows="20"></textarea><br />
+	
+</div>
+
+<script type="text/javascript">
+
+function buttonFormat_Clicked()
+{
+	var d = document;
+	var jsonToFormat = d.getElementById("textareaBefore").value;
+	var jsonFormatted = new JsonFormatter().formatJSONString(jsonToFormat);
+	d.getElementById("textareaAfter").value = jsonFormatted;
+}
+
+function JsonFormatter()
+{
+	// Do nothing.
+}
+{
+	JsonFormatter.prototype.formatJSONString = function(jsonStringToConvert)
+	{
+			var jsonAsObject = JSON.parse(jsonStringToConvert);
+			var returnValue = JSON.stringify
+			(
+				jsonAsObject,
+				null, // ?
+				4 // indent spaces
+			);
+			return returnValue;
+	};
+}
+
+</script>
+
+</body>
+</html>
